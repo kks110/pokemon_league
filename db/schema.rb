@@ -16,12 +16,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_02_104024) do
 
   create_table "matches", force: :cascade do |t|
     t.integer "winning_player_id"
-    t.integer "loosing_player_id"
+    t.integer "losing_player_id"
     t.integer "winner_score"
     t.integer "loser_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["winning_player_id", "loosing_player_id"], name: "index_matches_on_winning_player_id_and_loosing_player_id", unique: true
   end
 
   create_table "players", force: :cascade do |t|

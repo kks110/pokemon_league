@@ -1,0 +1,20 @@
+<h1>Matches</h1>
+
+<table>
+  <tr>
+    <th>Winner</th>
+    <th></th>
+    <th></th>
+    <th>Loser</th>
+    <th>Date</th>
+  </tr>
+  <% @matches.each do |match| %>
+    <tr>
+      <td><%= link_to match.winner.name, match.winner %></td>
+      <td><%= match.winner_score %></td>
+      <td><%= match.loser_score %></td>
+      <td><%= link_to match.loser.name, match.loser %></td>
+      <td><%= match.created_at.strftime('%F') %></td>
+    </tr>
+  <% end %>
+</table>
