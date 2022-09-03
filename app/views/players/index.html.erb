@@ -1,6 +1,16 @@
-<h1>Players</h1>
 
-<table>
+<div class="text-center">
+  <%= image_tag("pokemon_league.png", height: 197, width: 173) %>
+</div>
+<div class="text-center">
+  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= rand(1..898) %>.png" alt="Pokemans" width="96" height="96">
+  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= rand(1..898) %>.png" alt="Pokemans" width="96" height="96">
+  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= rand(1..898) %>.png" alt="Pokemans" width="96" height="96">
+  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= rand(1..898) %>.png" alt="Pokemans" width="96" height="96">
+  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= rand(1..898) %>.png" alt="Pokemans" width="96" height="96">
+</div>
+
+<table class="table">
   <tr>
     <th>Player</th>
     <th>Match Wins</th>
@@ -10,7 +20,7 @@
   </tr>
   <% @players.each do |player| %>
     <tr>
-      <td><%= link_to player.name, player %></td>
+      <td><%= link_to player.name, player, class: "list-group-item" %></td>
       <td><%= player.wins_and_losses[:matches_won] %></td>
       <td><%= player.wins_and_losses[:matches_lost] %></td>
       <td><%= player.wins_and_losses[:games_won] %></td>
@@ -18,5 +28,3 @@
     </tr>
   <% end %>
 </table>
-
-<%= link_to "New Player", new_player_path %>
