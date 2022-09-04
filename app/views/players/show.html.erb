@@ -72,10 +72,10 @@
   </tr>
   <% @player.matches.each do |match| %>
     <tr>
-      <td><%= link_to match.winner.name, match.winner %></td>
+      <td><%= link_to match.winner.name, match.winner, class: "list-group-item" %></td>
       <td><%= match.winner_score %></td>
       <td><%= match.loser_score %></td>
-      <td><%= link_to match.loser.name, match.loser %></td>
+      <td><%= link_to match.loser.name, match.loser, class: "list-group-item" %></td>
       <td><%= match.created_at.strftime('%F') %></td>
     </tr>
   <% end %>
