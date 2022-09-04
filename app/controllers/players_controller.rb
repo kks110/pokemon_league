@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   def index
-    @players = Player.all
+    players = Player.all
+    @sorted_players = players.to_a.sort_by { |player| player.wins_and_losses[:matches_won] }.reverse!
   end
 
   def show

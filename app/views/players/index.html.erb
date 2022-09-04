@@ -11,7 +11,7 @@
     <th>Game Wins</th>
     <th>Game Losses</th>
   </tr>
-  <% @players.each do |player| %>
+  <% @sorted_players.each do |player| %>
     <tr>
       <td>
         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= player.favorite_pokemon_id %>.png" class="float-start" alt="Pokemans" width="32" height="32">

@@ -15,6 +15,9 @@ class Player < ApplicationRecord
     Match.where((["winning_player_id = ? or losing_player_id = ?", "#{id}", "#{id}"]))
   end
   def wins_and_losses
+    @wins_and_losses ||= build_wins_and_losses_hash
+  end
+  def build_wins_and_losses_hash
     wins_and_losses_hash = {
       matches_won: 0,
       matches_lost: 0,
