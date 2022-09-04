@@ -1,13 +1,67 @@
-<h1><%= @player.name %></h1>
-<%= link_to "Edit", edit_player_path(@player) %>
-<br>
-<br>
 
 
-<p>Match Wins: <%= @player.wins_and_losses[:matches_won] %></p>
-<p> Match Losses: <%= @player.wins_and_losses[:matches_lost] %></p>
-<p>Game Wins: <%= @player.wins_and_losses[:games_won] %></p>
-<p>Game losses: <%= @player.wins_and_losses[:games_lost] %></p>
+<div class="card border-success mb-3" style="width: 18rem;">
+  <div class="card-header">
+    <div class="row text-center">
+      <div class="col-10 my-auto">
+        <h5 class="mb-1 mt-1 float-beginning"><%= @player.name %></h5>
+      </div>
+      <div class="col-2 mobile-img">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= rand(1..898) %>.png" class="float-end" alt="Pokemans" width="96" height="96">
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <div class="row mb-1">
+          <div class="col-10 my-auto">
+            <div class="text-start"> Match Wins: </div>
+          </div>
+          <div class="col-2 my-auto">
+            <div class="text-end"><%= @player.wins_and_losses[:matches_won] %></div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row mb-1">
+          <div class="col-10 my-auto">
+            <div class="text-start"> Match Losses: </div>
+          </div>
+          <div class="col-2 my-auto">
+            <div class="text-end"><%= @player.wins_and_losses[:matches_lost] %></div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row mb-1">
+          <div class="col-10 my-auto">
+            <div class="text-start"> Game Wins: </div>
+          </div>
+          <div class="col-2 my-auto">
+            <div class="text-end"><%= @player.wins_and_losses[:games_won] %></div>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row mb-1">
+          <div class="col-10 my-auto">
+            <div class="text-start"> Game losses: </div>
+          </div>
+          <div class="col-2 my-auto">
+            <div class="text-end"><%= @player.wins_and_losses[:games_lost] %></div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer text-muted">
+    <%= link_to "Edit Name", edit_player_path(@player), class: "btn btn-primary" %>
+  </div>
+</div>
+
+
 
 <table class="table">
   <tr>
