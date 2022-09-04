@@ -1,6 +1,15 @@
+class PokemonExists < ActiveModel::Validator
+  def validate(record)
+    if "Not Found" == HTTParty.get("https://pokeapi.co/api/v2/pokemon/#{record.favorite_pokemon}").body
+      record.errors.add :favorite_pokemon, "does not exist!"
+    end
+  end
+end
+
 class Player < ApplicationRecord
-  validates :name, presence: true
+  validates :name, :favorite_pokemon, :favorite_pokemon_id, presence: true
   validates :name, uniqueness: true
+  validates_with PokemonExists
 
   def matches
     Match.where((["winning_player_id = ? or losing_player_id = ?", "#{id}", "#{id}"]))
