@@ -1,28 +1,46 @@
-<%= form_with model: @match do |form| %>
-  <div>
-    <%= form.label :winner %><br>
-    <%= form.collection_select :winning_player_id, Player.order(:name),:id,:name, include_blank: true %>
+
+<div class="container mt-3">
+  <div class="row mb-3 justify-content-center">
+    <h1 class="col-sm-7">Record Match</h1>
+  </div>
+  <%= form_with model: @match do |form| %>
     <% @match.errors.full_messages_for(:winning_player_id).each do |message| %>
-      <div><%= message %></div>
+      <div class="row mb-3 justify-content-center">
+        <div class="alert alert-danger col-sm-7"><%= message %></div>
+      </div>
     <% end %>
-  </div>
+    <div class="row mb-3 justify-content-center">
+      <%= form.label :winner, class: "col-sm-2 col-form-label" %><br>
+      <div class="col-sm-5">
+        <%= form.collection_select :winning_player_id, Player.order(:name),:id,:name, { include_blank: true }, { class: "form-select" } %>
+      </div>
+    </div>
 
-  <div>
-    <%= form.label :loser %><br>
-    <%= form.collection_select :losing_player_id, Player.order(:name),:id,:name, include_blank: true %>
-  </div>
+    <div class="row mb-3 justify-content-center">
+      <%= form.label :loser, class: "col-sm-2 col-form-label" %><br>
+      <div class="col-sm-5">
+        <%= form.collection_select :losing_player_id, Player.order(:name),:id,:name, { include_blank: true }, { class: "form-select" } %>
+      </div>
+    </div>
 
-  <div>
-    <%= form.label :winner_score %><br>
-    <%= form.number_field :winner_score %>
-  </div>
+    <div class="row mb-3 justify-content-center">
+      <%= form.label :winner_score, class: "col-sm-2 col-form-label" %><br>
+      <div class="col-sm-5">
+        <%= form.number_field :winner_score, class: "form-control" %>
+      </div>
+    </div>
 
-  <div>
-    <%= form.label :loser_score %><br>
-    <%= form.number_field :loser_score %>
-  </div>
+    <div class="row mb-3 justify-content-center">
+      <%= form.label :loser_score, class: "col-sm-2 col-form-label" %><br>
+      <div class="col-sm-5">
+        <%= form.number_field :loser_score, class: "form-control" %>
+      </div>
+    </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="row mb-3 justify-content-center">
+      <%= form.submit 'Create Match', class: "btn btn-primary col-sm-7" %>
+    </div>
+  <% end %>
+</div>
+
+

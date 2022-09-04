@@ -1,7 +1,7 @@
 class WinnerLooserUniqueness < ActiveModel::Validator
   def validate(record)
     if record.winning_player_id == record.losing_player_id
-      record.errors.add :winning_player_id, "Winning player and Loosing player cannot be the same"
+      record.errors.add :winning_player_id, "and Loosing player cannot be the same"
     end
   end
 end

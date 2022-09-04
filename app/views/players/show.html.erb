@@ -1,14 +1,15 @@
 <h1><%= @player.name %></h1>
-<ul>
-  <li><%= link_to "Edit", edit_player_path(@player) %></li>
-</ul>
+<%= link_to "Edit", edit_player_path(@player) %>
+<br>
+<br>
 
-<h2>Match Wins: <%= @player.wins_and_losses[:matches_won] %></h2>
-<h2> Match Losses: <%= @player.wins_and_losses[:matches_lost] %></h2>
-<h2>Game Wins: <%= @player.wins_and_losses[:games_won] %></h2>
-<h2>Game losses: <%= @player.wins_and_losses[:games_lost] %></h2>
 
-<table>
+<p>Match Wins: <%= @player.wins_and_losses[:matches_won] %></p>
+<p> Match Losses: <%= @player.wins_and_losses[:matches_lost] %></p>
+<p>Game Wins: <%= @player.wins_and_losses[:games_won] %></p>
+<p>Game losses: <%= @player.wins_and_losses[:games_lost] %></p>
+
+<table class="table">
   <tr>
     <th>Winner</th>
     <th></th>

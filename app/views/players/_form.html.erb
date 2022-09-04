@@ -1,13 +1,18 @@
+
 <%= form_with model: @player do |form| %>
-  <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-    <% @player.errors.full_messages_for(:name).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+  <% @player.errors.full_messages_for(:name).each do |message| %>
+    <div class="row mb-3 justify-content-center">
+      <div class="alert alert-danger col-sm-7"><%= message %></div>
+    </div>
+  <% end %>
+  <div class="row mb-3 justify-content-center">
+    <%= form.label :player_name, class: "col-sm-2 col-form-label" %><br>
+    <div class="col-sm-5">
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="row mb-3 justify-content-center">
+    <%= form.submit 'Create Player', class: "btn btn-primary col-sm-7" %>
   </div>
 <% end %>
