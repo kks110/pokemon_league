@@ -16,6 +16,20 @@ class MatchesController < ApplicationController
     end
   end
 
+  def edit
+    @match = Match.find(params[:id])
+  end
+
+  def update
+    @match = Match.find(params[:id])
+
+    if @match.update(match_params)
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
   def match_params
     params.require(:match).permit(:winning_player_id, :losing_player_id, :winner_score, :loser_score)

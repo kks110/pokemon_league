@@ -1,83 +1,93 @@
 
-<div class="card border-success mb-3" style="width: 18rem;">
-  <div class="card-header">
-    <div class="row text-center">
-      <div class="col-10 my-auto">
-        <h5 class="mb-1 mt-1 float-beginning"><%= @player.name %></h5>
+<div class="row">
+  <div class="col-md-4">
+    <div class="card border-success mb-3 w-20">
+      <div class="card-header">
+        <div class="row text-center">
+          <div class="col-10 my-auto">
+            <h5 class="mb-1 mt-1 float-beginning"><%= @player.name %></h5>
+          </div>
+          <div class="col-2 mobile-img">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= @player.favorite_pokemon_id %>.png" class="float-end" alt="Pokemans" width="96" height="96">
+          </div>
+        </div>
       </div>
-      <div class="col-2 mobile-img">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= @player.favorite_pokemon_id %>.png" class="float-end" alt="Pokemans" width="96" height="96">
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row mb-1">
+              <div class="col-10 my-auto">
+                <div class="text-start"> Match Wins: </div>
+              </div>
+              <div class="col-2 my-auto">
+                <div class="text-end"><%= @player.wins_and_losses[:matches_won] %></div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row mb-1">
+              <div class="col-10 my-auto">
+                <div class="text-start"> Match Losses: </div>
+              </div>
+              <div class="col-2 my-auto">
+                <div class="text-end"><%= @player.wins_and_losses[:matches_lost] %></div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row mb-1">
+              <div class="col-10 my-auto">
+                <div class="text-start"> Game Wins: </div>
+              </div>
+              <div class="col-2 my-auto">
+                <div class="text-end"><%= @player.wins_and_losses[:games_won] %></div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row mb-1">
+              <div class="col-10 my-auto">
+                <div class="text-start"> Game losses: </div>
+              </div>
+              <div class="col-2 my-auto">
+                <div class="text-end"><%= @player.wins_and_losses[:games_lost] %></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="card-footer text-muted">
+        <%= link_to "Edit", edit_player_path(@player), class: "btn btn-primary" %>
       </div>
     </div>
   </div>
+  <div class="col-md-8">
+    <div>
+      <table class="table">
+        <tr>
+          <th style="width: 10%">Winner</th>
+          <th style="width: 10%"></th>
+          <th></th>
+          <th style="width: 10%"></th>
+          <th style="width: 10%">Loser</th>
+          <th style="width: 50%">Date</th>
+          <th style="width: 10%"></th>
+        </tr>
+        <% @player.matches.each do |match| %>
+          <tr>
+            <td><%= link_to match.winner.name, match.winner, class: "list-group-item" %></td>
+            <td class="text-end"><%= match.winner_score %></td>
+            <td>-</td>
+            <td><%= match.loser_score %></td>
+            <td><%= link_to match.loser.name, match.loser, class: "list-group-item" %></td>
+            <td><%= match.created_at.strftime('%F') %></td>
+            <td> <%= link_to "Edit", edit_match_path(match), class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 
-  <div class="card-body">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <div class="row mb-1">
-          <div class="col-10 my-auto">
-            <div class="text-start"> Match Wins: </div>
-          </div>
-          <div class="col-2 my-auto">
-            <div class="text-end"><%= @player.wins_and_losses[:matches_won] %></div>
-          </div>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="row mb-1">
-          <div class="col-10 my-auto">
-            <div class="text-start"> Match Losses: </div>
-          </div>
-          <div class="col-2 my-auto">
-            <div class="text-end"><%= @player.wins_and_losses[:matches_lost] %></div>
-          </div>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="row mb-1">
-          <div class="col-10 my-auto">
-            <div class="text-start"> Game Wins: </div>
-          </div>
-          <div class="col-2 my-auto">
-            <div class="text-end"><%= @player.wins_and_losses[:games_won] %></div>
-          </div>
-        </div>
-      </li>
-      <li class="list-group-item">
-        <div class="row mb-1">
-          <div class="col-10 my-auto">
-            <div class="text-start"> Game losses: </div>
-          </div>
-          <div class="col-2 my-auto">
-            <div class="text-end"><%= @player.wins_and_losses[:games_lost] %></div>
-          </div>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <div class="card-footer text-muted">
-    <%= link_to "Edit", edit_player_path(@player), class: "btn btn-primary" %>
-  </div>
 </div>
 
-
-
-<table class="table">
-  <tr>
-    <th>Winner</th>
-    <th></th>
-    <th></th>
-    <th>Loser</th>
-    <th>Date</th>
-  </tr>
-  <% @player.matches.each do |match| %>
-    <tr>
-      <td><%= link_to match.winner.name, match.winner, class: "list-group-item" %></td>
-      <td><%= match.winner_score %></td>
-      <td><%= match.loser_score %></td>
-      <td><%= link_to match.loser.name, match.loser, class: "list-group-item" %></td>
-      <td><%= match.created_at.strftime('%F') %></td>
-    </tr>
-  <% end %>
-</table>
 
