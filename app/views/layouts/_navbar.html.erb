@@ -1,17 +1,37 @@
+<!--<nav class="navbar bg-light">-->
+<!--  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%#= rand(1..898) %>.png" alt="Pokemans" width="96" height="96">-->
+  <%#= link_to "New Player", new_player_path %>
+  <%#= link_to "New Player", new_player_path %>
+<!--</nav>-->
+
+
+<!--<nav class="navbar navbar-expand-lg bg-light">-->
+<!--  <div class="container-fluid">-->
+    <%#= image_tag("pokeball.png", height: 30, width: 30) %>
+<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarNavDropdown">-->
+<!--      <ul class="navbar-nav">-->
+<!--        <li class="nav-item">-->
+          <%#= link_to "Home", root_path, class: "nav-link active" %>
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+          <%#= link_to "New Player", new_player_path, class: "nav-link active" %>
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+          <%#= link_to "Record Match", new_match_path, class: "nav-link active" %>
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->
 
 <nav class="navbar bg-light">
+  <form class="container-fluid justify-content-start">
     <%= image_tag("pokeball.png", height: 30, width: 30) %>
-    <div class="container">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <%= link_to "Home", root_path, class: "nav-link active" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "New Player", new_player_path, class: "nav-link active" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Record Match", new_match_path, class: "nav-link active" %>
-        </li>
-      </ul>
-    </div>
+    <%= link_to "Home", root_path, class: "btn btn-light ms-2" %>
+    <%= link_to "New Player", new_player_path, class: "btn btn-light ms-2" %>
+    <%= link_to "Record Match", new_match_path, class: "btn btn-light ms-2" %>
+  </form>
 </nav>
