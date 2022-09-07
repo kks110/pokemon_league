@@ -1,0 +1,12 @@
+
+<%= form_with url: { action: :matches_to_play } do |form| %>
+
+  <% @players.each do |player| %>
+    <div class="form-check">
+      <%= form.label player.name, class: "form-check-label" %>
+      <%= form.check_box "player[selected][#{player.name}]", class: "form-check-input" %>
+    </div>
+  <% end %>
+
+  <%= form.submit 'Create Matches', class: "btn btn-primary col-sm-7" %>
+<% end %>

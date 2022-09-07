@@ -42,7 +42,35 @@ class PlayersController < ApplicationController
     end
   end
 
+  def generate_matches
+    @players = Player.all
+  end
+
+  def matches_to_play
+    players = player_params[:selected]
+    players_array = []
+    players.each do |player|
+      if player[1] == '1'
+        players_array.push(Player.find_by_name(player[0]))
+      end
+    end
+    @pairings = build_pairs(players_array)
+  end
+
   private
+
+  def build_pairs(players)
+    pairs = {}
+    players.shuffle!
+    while !players.empty?
+      if players.length > 1
+        pairs[players.pop] = players.pop
+      else
+        pairs[players.pop] = 'Bye'
+      end
+    end
+    pairs
+  end
 
   def get_pokemon_id(fave_pokemon)
     response = HTTParty.get("https://pokeapi.co/api/v2/pokemon/#{fave_pokemon}")
@@ -55,6 +83,6 @@ class PlayersController < ApplicationController
   end
 
   def player_params
-    params.require(:player).permit(:name, :favorite_pokemon)
+    params.require(:player).permit(:name, :favorite_pokemon, selected: {})
   end
 end

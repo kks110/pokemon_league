@@ -11,6 +11,10 @@ class Player < ApplicationRecord
   validates :name, uniqueness: true
   validates_with PokemonExists
 
+  def find_by_name(name)
+    Player.where(name: name)
+  end
+
   def matches
     Match.where((["winning_player_id = ? or losing_player_id = ?", "#{id}", "#{id}"]))
   end
